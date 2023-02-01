@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.todo.database.MyDataBase
 import com.example.todo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,8 +18,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(ViewBinding.root)
         selectedItem()
         ViewBinding.bottomnavigation.selectedItemId=R.id.list
+        // TODO: when click on the btn add
+        ViewBinding.idBtnAdd.setOnClickListener(View.OnClickListener {
+
+                showAddTaskBottomSheet()
+            // TODO:  لما يدوس علي البوتن هيفتح بوتم شيت 
+        })
+    }
+
+
+    // TODO: this func show the BottomSheet
+    private fun showAddTaskBottomSheet() {
+        //بنعمل اوبجكت منها
+       var addTaskFragment=AddTaskFragment()
+        //بياخد مني فرجمنت منجر ونل
+        addTaskFragment.show(supportFragmentManager,null)
 
     }
+
     //func used at selected item in bottomnav
     private  fun selectedItem()
     {
@@ -38,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
     }
 
 
@@ -51,4 +70,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
 }
