@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/bkg_card_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,35 +15,31 @@
         android:layout_height="match_parent">
 
         <View
+            style="@style/line"
             android:id="@+id/line"
             android:layout_width="4dp"
             android:layout_height="80dp"
-            android:background="@color/blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            style="@style/tv_titleTasks"
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:textColor="@color/blue"
-            android:textSize="18dp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/imageView"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintBottom_toTopOf="@+id/desc"
             app:layout_constraintStart_toEndOf="@id/line"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="play basket ball" />
 
         <TextView
-            android:id="@+id/textView"
+            style="@style/tv_descTasks"
+            android:id="@+id/desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/imageView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/line"

@@ -27,6 +27,12 @@ class AddTaskFragment : BottomSheetDialogFragment()
         return viewBinding.root
     }
 
+    var onDismissListener:OnDismissListener?=null
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismissListener?.onDismiss();
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setData()
