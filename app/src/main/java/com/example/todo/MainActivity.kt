@@ -12,11 +12,15 @@ import com.example.todo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var ViewBinding:ActivityMainBinding
+    val taskListFragment=ListFragment();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ViewBinding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(ViewBinding.root)
+
+
         selectedItem()
+
         ViewBinding.bottomnavigation.selectedItemId=R.id.list
         // TODO: when click on the btn add
         ViewBinding.idBtnAdd.setOnClickListener(View.OnClickListener {
@@ -31,8 +35,17 @@ class MainActivity : AppCompatActivity() {
     private fun showAddTaskBottomSheet() {
         //بنعمل اوبجكت منها
        var addTaskFragment=AddTaskFragment()
+        addTaskFragment.onDismissListener= OnDismissListener {
+           //add task fragment dismiss
+            //get  tasks list  fragment
+            //reload tasks
+            taskListFragment.loadTask()
+
+
+        }
         //بياخد مني فرجمنت منجر ونل
         addTaskFragment.show(supportFragmentManager,null)
+
 
     }
 
@@ -42,12 +55,14 @@ class MainActivity : AppCompatActivity() {
         ViewBinding.bottomnavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.list -> {
-                    showfragment(ListFragment())
+                    showFragment(taskListFragment)
+                    ViewBinding.tvTaskListSetting.text = "tasks"
 
 
                 }
                 R.id.setting -> {
-                    showfragment(SetteingFragment())
+                    showFragment(SetteingFragment())
+                    ViewBinding.tvTaskListSetting.text="setting"
                 }
 
 
@@ -61,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
 
     //run the fragment
-    private  fun showfragment(Fragment: Fragment){
+    private  fun showFragment(Fragment: Fragment){
         supportFragmentManager
             .beginTransaction()
             //framelayou > the place show on the fragment
