@@ -7,15 +7,15 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tasks")
 data class Task (
     @PrimaryKey(autoGenerate = true)
-     val id :Int,
+    var id :Int?=null,
     @ColumnInfo
-     var title:String?=null,
+    var title:String?=null,
     @ColumnInfo
     var description :String?=null,
     @ColumnInfo
     var data :Long?=null,
     @ColumnInfo
-    var isdane:Boolean=false
+    var isdane:Boolean=false,
  )
  {
 

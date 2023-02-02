@@ -6,4 +6,5 @@
     <string name="add_new_task">Add new Task</string>
     <string name="add_task">Add Task</string>
     <string name="task_description">Task Description</string>
+    <string name="ok">ok</string>
 </resources>
