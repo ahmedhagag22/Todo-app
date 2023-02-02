@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.todo.database.MyDataBase
+import com.example.todo.database.model.Task
 import com.example.todo.databinding.FragmentAddTaskBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.time.Year
@@ -30,7 +32,34 @@ class AddTaskFragment : BottomSheetDialogFragment()
 
             showDatepicker()
         })
+
+       viewBinding.btntask.setOnClickListener(View.OnClickListener {
+           addTask()
+        })
+
+
     }
+
+    private fun addTask() {
+        val title =viewBinding.taskTitle.editText?.text.toString()
+        val desc=viewBinding.taskDesc.editText?.text.toString()
+
+        if (title.isNotBlank())
+        {
+            viewBinding.taskTitle.error=" please enter the title"
+        }
+        else {
+            viewBinding.taskTitle.error = null
+        }
+        if (desc.isNotBlank())
+        {
+            viewBinding.taskDesc.error="please enter the description"
+        }
+        else {
+            viewBinding.taskDesc.error = null
+        }
+    }
+
     fun setData(){
         viewBinding.dateTask.setText(""+ currentDate.get(Calendar.DAY_OF_MONTH)
                 +"/ "+ currentDate.get(Calendar.MONTH)+1+"/"+currentDate.get(Calendar.YEAR)).toString()
