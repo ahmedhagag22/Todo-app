@@ -106,11 +106,19 @@ class AddTaskFragment : BottomSheetDialogFragment()
     fun setData(){
         viewBinding.dateTask.
         setText(""+ currentDate.get(Calendar.DAY_OF_MONTH)
-                +"/ "+ currentDate.get(Calendar.MONTH)
-                + "/"+currentDate.get(Calendar.YEAR)).toString()
+                +"/"+ currentDate.get(Calendar.MONTH)
+                + "/"+currentDate.get(Calendar.YEAR))
     }
 
-    var currentDate=Calendar.getInstance()
+    var currentDate=Calendar.getInstance();
+    // TODO: هنا صفرنا الوقت عشان الايبوك تايم بيتخزن ب ال وقت لان  دا هيبقي صعب انه يظهر التاسكات اللي هعملها سيلكت ب اليوم
+    //ignore time
+    init {
+        currentDate.set(Calendar.HOUR,0)
+        currentDate.set(Calendar.MINUTE,0)
+        currentDate.set(Calendar.SECOND,0)
+        currentDate.set(Calendar.MILLISECOND,0)
+    }
     private fun showDatepicker() {
        val datePickerDialog=DatePickerDialog(requireActivity(),
          {

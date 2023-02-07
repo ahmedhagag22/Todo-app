@@ -74,6 +74,18 @@
         <item name="android:backgroundTint">@color/white</item>
 
     </style>
+    <style name="weakEnd">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="days">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="clander">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 
 
 
