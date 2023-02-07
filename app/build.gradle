@@ -58,6 +58,8 @@ dependencies {
 
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:$room_version"
+    // material-calendarview
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
 
 
 }
