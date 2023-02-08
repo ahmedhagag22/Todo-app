@@ -14,8 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.time.Year
 import java.util.Calendar
 
-class AddTaskFragment : BottomSheetDialogFragment()
-{
+class AddTaskFragment : BottomSheetDialogFragment() {
 
     lateinit var viewBinding: FragmentAddTaskBinding
     override fun onCreateView(
@@ -23,11 +22,11 @@ class AddTaskFragment : BottomSheetDialogFragment()
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewBinding= FragmentAddTaskBinding.inflate(layoutInflater,container,false)
+        viewBinding = FragmentAddTaskBinding.inflate(layoutInflater, container, false)
         return viewBinding.root
     }
 
-    var onDismissListener:OnDismissListener?=null
+    var onDismissListener: OnDismissListener? = null
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         onDismissListener?.onDismiss();
@@ -41,98 +40,100 @@ class AddTaskFragment : BottomSheetDialogFragment()
             showDatepicker()
         })
 
-       viewBinding.btntask.setOnClickListener(View.OnClickListener {
-           addTask()
-       })
+        viewBinding.btntask.setOnClickListener(View.OnClickListener {
+            addTask()
+        })
 
 
     }
 
     // TODO: valdit the edit txt is not null or blank
-        fun valdit():Boolean{
-            var valid=true
-            val title =viewBinding.taskTitle.editText?.text.toString()
-            val desc=viewBinding.taskDesc.editText?.text.toString()
+    fun valdit(): Boolean {
+        var valid = true
+        val title = viewBinding.taskTitle.editText?.text.toString()
+        val desc = viewBinding.taskDesc.editText?.text.toString()
 
-            if (title.isNullOrBlank())
-            {
-                viewBinding.taskTitle.error=" please enter the title"
-            valid=false
-            }
-
-            else {
-                viewBinding.taskTitle.error = null
-            }
-            if (desc.isNullOrBlank())
-            {
-
-                viewBinding.taskDesc.error="please enter the description"
-            valid=false
-            }
-            else {
-                viewBinding.taskDesc.error = null
-            }
-        return valid
+        if (title.isNullOrBlank()) {
+            viewBinding.taskTitle.error = " please enter the title"
+            valid = false
+        } else {
+            viewBinding.taskTitle.error = null
         }
-     fun addTask() {
-        if (valdit()==false){
+        if (desc.isNullOrBlank()) {
+
+            viewBinding.taskDesc.error = "please enter the description"
+            valid = false
+        } else {
+            viewBinding.taskDesc.error = null
+        }
+        return valid
+    }
+
+    fun addTask() {
+        if (valdit() == false) {
             return;
         }
 
-         val title =viewBinding.taskTitle.editText?.text.toString()
-         val desc=viewBinding.taskDesc.editText?.text.toString()
+        val title = viewBinding.taskTitle.editText?.text.toString()
+        val desc = viewBinding.taskDesc.editText?.text.toString()
         MyDataBase.getDataBase(requireActivity()).getDao()
-            .insert(Task(
-                title = title,
-                description = desc,
-                data = currentDate.timeInMillis
-            ))
-         showInsertDialog()
-     }
-
-         fun showInsertDialog()
-         {
-             val alertDialogBuilder=AlertDialog.Builder(activity)
-                 .setMessage("insert successfully")
-                 .setPositiveButton(R.string.ok
-                 ) { dialog, which ->
-                     dialog.dismiss()
-                     dismiss()
-                 }
-             alertDialogBuilder.show()
-         }
-
-
-    fun setData(){
-        viewBinding.dateTask.
-        setText(""+ currentDate.get(Calendar.DAY_OF_MONTH)
-                +"/"+ currentDate.get(Calendar.MONTH)
-                + "/"+currentDate.get(Calendar.YEAR))
+            .insert(
+                Task(
+                    title = title,
+                    description = desc,
+                    date = currentDate.timeInMillis
+                )
+            )
+        showInsertDialog()
     }
 
-    var currentDate=Calendar.getInstance();
+    fun showInsertDialog() {
+        val alertDialogBuilder = AlertDialog.Builder(activity)
+            .setMessage("insert successfully")
+            .setPositiveButton(
+                R.string.ok
+            ) { dialog, which ->
+                dialog.dismiss()
+                dismiss()
+            }
+        alertDialogBuilder.show()
+    }
+
+
+    fun setData() {
+        viewBinding.dateTask.setText(
+            "" + currentDate.get(Calendar.DAY_OF_MONTH) + "/" + currentDate.get(
+                Calendar.MONTH
+            ) + "/" + currentDate.get(Calendar.YEAR)
+        )
+    }
+
+    var currentDate = Calendar.getInstance();
+
     // TODO: هنا صفرنا الوقت عشان الايبوك تايم بيتخزن ب ال وقت لان  دا هيبقي صعب انه يظهر التاسكات اللي هعملها سيلكت ب اليوم
     //ignore time
     init {
-        currentDate.set(Calendar.HOUR,0)
-        currentDate.set(Calendar.MINUTE,0)
-        currentDate.set(Calendar.SECOND,0)
-        currentDate.set(Calendar.MILLISECOND,0)
+        currentDate.set(Calendar.HOUR, 0)
+        currentDate.set(Calendar.MINUTE, 0)
+        currentDate.set(Calendar.SECOND, 0)
+        currentDate.set(Calendar.MILLISECOND, 0)
     }
+
     private fun showDatepicker() {
-       val datePickerDialog=DatePickerDialog(requireActivity(),
-         {
-                view, year, month, dayOfMonth ->
-             currentDate.set(Calendar.YEAR,year)
-             currentDate.set(Calendar.MONTH,month)
-             currentDate.set(Calendar.DAY_OF_MONTH,dayOfMonth)
+        val datePickerDialog = DatePickerDialog(
+            requireActivity(),
+            { view, year, month, dayOfMonth ->
+                currentDate.set(Calendar.YEAR, year)
+                currentDate.set(Calendar.MONTH, month)
+                currentDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
                 setData()
 
-         },
+            },
             currentDate.get(Calendar.YEAR),
             currentDate.get(Calendar.MONTH),
-        currentDate.get(Calendar.DAY_OF_MONTH))
+            currentDate.get(Calendar.DAY_OF_MONTH)
+        )
         datePickerDialog.show()
     }
 
