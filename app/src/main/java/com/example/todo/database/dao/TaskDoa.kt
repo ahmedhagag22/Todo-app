@@ -11,7 +11,7 @@ interface TaskDoa {
     fun delete(task: Task)
     @Query("SELECT * FROM tasks ")
     fun getAllTasks():List<Task>
-    @Query("SELECT *FROM tasks WHERE data=:date")
+    @Query("SELECT *FROM tasks WHERE date=:date")
     fun getTasksByDate(date:Long):List<Task>
     @Update
     fun update (task: Task)

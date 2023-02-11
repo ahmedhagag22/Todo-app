@@ -7,4 +7,19 @@
     <string name="add_task">Add Task</string>
     <string name="task_description">Task Description</string>
     <string name="ok">ok</string>
+    <string name="edit_task">Edit Task</string>
+    <string name="select_date">select date</string>
+    <string name="task_details">Task details</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="mode">Mode</string>
+    <string name="selected">Selected item:</string>
+    <string-array name="Languages">
+        <item>English</item>
+        <item>arabic</item>
+    </string-array>
+    <string-array name="mode">
+        <item>Night</item>
+        <item>dark</item>
+    </string-array>
 </resources>

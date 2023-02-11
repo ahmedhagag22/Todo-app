@@ -13,11 +13,10 @@ data class Task (
     @ColumnInfo
     var description :String?=null,
     @ColumnInfo
-    var data :Long?=null,
+    var date :Long?=null,
     @ColumnInfo
     var isdane:Boolean=false,
- )
- {
+ ):java.io.Serializable
 
 
-}
+
